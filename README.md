@@ -5,7 +5,6 @@ Develope a program that accepts as CLA a directory path (real or not) and then p
 - 'base': the path up to the 'file' part;
 - 'name': the name of the file without the extension;
 - 'extn': the extension of the file;
-OBS: A segmentation fauld error keeps appearing, you don't know why, even the first print statement doesn't execute
 # Bonus
 Storing some functions that process file paths that could be used in other programs.
 # MadeWith
