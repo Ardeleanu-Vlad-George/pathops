@@ -86,10 +86,10 @@ extn: .si_asa
 ```
 # Stones
 ## HindStones
-## MileStones
 - Replace the biology based naming convention with the next one: the whole path is just called 'path' (same notation), the file full name is 
  called 'file' (same notation), the name wihout the the extension is 'name' (same), the file extension is 'extension' (noted 'extn'), the part
  up to 'file' is called 'base' (same notation);(did this only in the beginning section of this README)
+## MileStones
 - Clean the 'examples' section, make sure they are no duplicates, and all the exceptional cases are covered;
 ## Sky_Stones
 - Code a similar program in Python using regex (this program would recatogarize the project from an 'example' to a 'subject')

@@ -1,70 +1,40 @@
 #include "path.h"
+#include "copy.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-/*
-*   For some weird reason, C doesn't seem to have a macro that helps you find 
-*   which version of the language is used, which would be really useful now
-*   since the "strdup" function was introduced in C23 (check below URL)
-*   https://stackoverflow.com/questions/252782/strdup-what-does-it-do-in-c
-*   And a current restriction of the project is to use C99
-*   To make a similar version to what would be normal to implement, use this
-*   'COPY_VERSION' macro fix
-*/
-#define COPY_VERSION 1
-
-#if COPY_VERSION==0
-
-  void* clone(void* data, int size){
-    void *copy = malloc(size);
-    int iter;//iterator
-    for(iter=0; iter<size; iter++)
-      //using this form of the subscript operator for the order of operation is clearer
-      iter[(char*)copy]=iter[(char*)data];
-    return copy;
-  }
-
-  #define COPY(ARG) (char*)clone((void*)ARG, strlen(ARG)+1)
-  #warning "Running COPY_VERSION 0"
-
-#elif COPY_VERSION==1
-
-  char* strdup(char* source){
-    char* copycat = malloc(strlen(source)+1);
-    strcpy(copycat, source);
-    return copycat;
-  }
-
-  #define COPY(ARG) strdup(ARG)
-  #warning "Running COPY_VERSION 1"
-
-#else
-  #error "Invalid COPY_VERSION"
-#endif
-
-
-int main(int argc, char* argv[]){
-  if(2 != argc){
-    printf("\tERR: Please give exactly one CLA argument\n");
-    return -1;
-  }
+int main(){
 
   char *path, *file, *base, *name, *extn;
+  FILE *in = fopen("./data/in", "r");
+  FILE *out = fopen("./data/out", "w");
+  path = (char*)calloc(101, 1);
 
-  path = COPY(argv[1]);
-  base = COPY(path);
+  while(1){
+    fgets(path, 101, in);
+    if(feof(in))
+      break;
+    path[strlen(path)-1]='\0';
 
-  path_to_base_and_file(&base, &file);
+    base = COPY(path);
+    path_to_base_and_file(&base, &file);
 
-  name = COPY(file);
-  file_to_name_and_extn(&name, &extn);
+    name = COPY(file);
+    file_to_name_and_extn(&name, &extn);
 
-  printf("path: %s\n", path);
-  printf("file: %s\n", file);
-  printf("base: %s\n", base);
-  printf("name: %s\n", name);
-  printf("extn: %s\n", extn);
+    fprintf(
+      out,
+      "path: %s\nfile: %s\tbase: %s\tname: %s\textn: %s\n\n",
+      path, file, base, name, extn
+    );
+
+    free(base);
+    if(NULL!=name)
+      free(name);
+  }
+
+  free(path);
+  fclose(in);
+  fclose(out);
 
   return 0;
 }

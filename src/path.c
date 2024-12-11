@@ -4,6 +4,8 @@
 
 void path_to_base_and_file(char** path_to_base, char** file){
   int len, itr;//len - length, itr - iterator
+  if(NULL == *path_to_base)
+    return;
   len = strlen(*path_to_base);
 
   for(itr=len; itr>-1; itr--)
@@ -21,6 +23,8 @@ void path_to_base_and_file(char** path_to_base, char** file){
 
 void file_to_name_and_extn(char** file_to_name, char** extn){
   int len, itr;//len - length, itr - iterator
+  if(NULL == *file_to_name)
+    return;
   len = strlen(*file_to_name);
 
   for(itr=0; itr<len; itr++) 
