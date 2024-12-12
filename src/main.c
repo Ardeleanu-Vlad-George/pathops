@@ -4,7 +4,8 @@
 
 int main(){
 
-  char *path, *file, *base, *name, *extn;
+  int iter, size;
+  char *path, *file, *base, *name, *extn, **toks;
   FILE *in = fopen("./data/in", "r");
   FILE *out = fopen("./data/out", "w");
   path = (char*)calloc(101, 1);
@@ -23,11 +24,18 @@ int main(){
 
     fprintf(
       out,
-      "path: %s\nfile: %s\tbase: %s\tname: %s\textn: %s\n\n",
+      "path: %s\nfile: %s\tbase: %s\tname: %s\textn: %s\n",
       path, file, base, name, extn
     );
+    toks = path_to_toks(path, &size);
+    fprintf("{", out);
+    for(iter=0; iter < size; iter++)
+      fpritnf("%s%c", toks[iter], iter+1==size ? ',' : '}');
+
+    fprintf("\n\n", out);
 
     free(base);
+    free(toks);
     if(NULL!=name)
       free(name);
   }
