@@ -44,6 +44,7 @@ void file_to_name_and_extn(char** file_to_name, char** extn);
   This parts are given only if they exist
   The number of found tokens is saved in the second argument
   The array of found tokens is returned by the function
+  The user is expected to free its memory
 
   More details down below: 
   @param path [inout] C style string to be processed
