@@ -43,3 +43,9 @@ void file_to_name_and_extn(char** file_to_name, char** extn){
     *extn=*file_to_name+itr+1
   );
 }
+
+char** path_to_toks(char *path, int *size){
+  char *base, *file, *name, *extn, *copy_of_path;
+  char **toks;
+
+}

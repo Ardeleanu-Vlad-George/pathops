@@ -50,6 +50,6 @@ void file_to_name_and_extn(char** file_to_name, char** extn);
   @param size [out]   The number of found tokens
   \return tokns An array of C style strings containing the tokens 
 */
-char** path_to_tokn(char* path, int *size);
+char** path_to_toks(char* path, int *size);
 
 #endif//_PATH_H_
