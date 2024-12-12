@@ -30,7 +30,7 @@ int main(){
     toks = path_to_toks(path, &size);
     fprintf(out, "{");
     for(iter=0; iter < size; iter++)
-      fprintf(out, "%s%c", toks[iter], iter+1==size ? ',' : '}');
+      fprintf(out, "%s%c", toks[iter], iter+1==size ? '}' : ',');
 
     fprintf(out, "\n\n");
 

@@ -69,10 +69,14 @@ char** path_to_toks(char *path, int *size){
   name ? (*size)++ : 0;
   extn ? (*size)++ : 0;
   toks = (char**)calloc(*size, sizeof(char*));
-  int memb;//declared for the current member of the array of tokens
+  int memb=0, lenf;
+  //first is for the current member of the array of tokens
+  //second is for storing the lenf of the 'path' variable, 
+  //which stores the 'base' component by now
   if(path){
     toks[memb++] = path;
-    for(iter=1; iter<strlen(path); iter++)
+    lenf = strlen(path);
+    for(iter=1; iter<lenf; iter++)
       path[iter]=='/' ? (path[iter]='\0', toks[memb++]=path+iter+1) : 0;
   }
 
