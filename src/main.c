@@ -14,12 +14,12 @@ int main(int argc, char* argv[]){
   char *path, *file, *base, *name, *extn, **toks;
   FILE *in = fopen(argv[1], "r");
   if(NULL == in){
-    fprintf(stderr, "Input file isn't available. Something went wrong.\n");
+    fprintf(stderr, "'%s' couldn't be opened for reading, please check the file path and permissions.\n", argv[1]);
     return -2;
   }
   FILE *out = fopen(argv[2], "w");
   if(NULL == out){
-    fprintf(stderr, "Output file isn't available. Something went wrong.\n");
+    fprintf(stderr, "'%s' couldn't be opened for writting, please check the file path and permissions.\n", argv[2]);
     return -3;
   }
   path = (char*)calloc(101, 1);
