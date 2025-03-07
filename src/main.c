@@ -7,7 +7,15 @@ int main(){
   int iter, size;
   char *path, *file, *base, *name, *extn, **toks;
   FILE *in = fopen("./data/in", "r");
+  if(NULL == in){
+    fprintf(stderr, "Input file isn't available. Something went wrong.\n");
+    return -1;
+  }
   FILE *out = fopen("./data/out", "w");
+  if(NULL == out){
+    fprintf(stderr, "Output file isn't available. Something went wrong.\n");
+    return -2;
+  }
   path = (char*)calloc(101, 1);
 
   while(1){
