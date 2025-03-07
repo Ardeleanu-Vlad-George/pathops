@@ -2,19 +2,25 @@
 #include "copy.h"
 #include <stdio.h>
 
-int main(){
+int main(int argc, char* argv[]){
+  if(argc != 3){
+    fprintf(stderr, "Only 2 arguments are accepted and needed.\n");
+    fprintf(stderr, "\t- the name of the input file;\n");
+    fprintf(stderr, "\t- the name of the output file;\n");
+    return -1;
+  }
 
   int iter, size;
   char *path, *file, *base, *name, *extn, **toks;
-  FILE *in = fopen("./data/in", "r");
+  FILE *in = fopen(argv[1], "r");
   if(NULL == in){
     fprintf(stderr, "Input file isn't available. Something went wrong.\n");
-    return -1;
+    return -2;
   }
-  FILE *out = fopen("./data/out", "w");
+  FILE *out = fopen(argv[2], "w");
   if(NULL == out){
     fprintf(stderr, "Output file isn't available. Something went wrong.\n");
-    return -2;
+    return -3;
   }
   path = (char*)calloc(101, 1);
 
